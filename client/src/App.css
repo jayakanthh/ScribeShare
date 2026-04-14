@@ -1,0 +1,425 @@
+/* ── Layout ─────────────────────────────────────────────── */
+.app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app--room {
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* ── Topbar ─────────────────────────────────────────────── */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand {
+  font-family: var(--heading);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-h);
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.topbar__right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* ── Brand accent ───────────────────────────────────────── */
+.brand-accent {
+  color: var(--accent);
+}
+
+/* ── Join page ──────────────────────────────────────────── */
+.join {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px 64px;
+  box-sizing: border-box;
+}
+
+.join__hero {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.join__logo {
+  font-size: clamp(36px, 6vw, 52px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: var(--text-h);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.join__logo-accent {
+  color: var(--accent);
+}
+
+.join__tagline {
+  font-size: 15px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.join__card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .join__card {
+    background: rgba(255,255,255,0.03);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.3);
+  }
+}
+
+.join__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.join__room-row {
+  display: flex;
+  gap: 8px;
+}
+
+.join__room-input {
+  flex: 1;
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* ── Role toggle ────────────────────────────────────────── */
+.role-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.role-toggle__btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s, color 0.15s;
+}
+
+.role-toggle__btn:hover {
+  border-color: var(--accent-border);
+  color: var(--text-h);
+}
+
+.role-toggle__btn--active {
+  border-color: var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.role-toggle__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(127,127,127,0.08);
+  margin-bottom: 2px;
+  transition: background 0.15s;
+}
+
+.role-toggle__btn--active .role-toggle__icon {
+  background: var(--accent-bg);
+  color: var(--accent);
+}
+
+.role-toggle__sub {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text);
+  letter-spacing: 0.2px;
+}
+
+.join__submit {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  justify-content: center;
+  background: var(--accent-bg);
+  border-color: var(--accent-border);
+  margin-top: 4px;
+}
+
+/* ── Panel (join + speaker) ─────────────────────────────── */
+.panel {
+  width: min(780px, 100%);
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.field {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+/* ── Inputs ─────────────────────────────────────────────── */
+input,
+select {
+  padding: 9px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-bg);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn {
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.12s, background 0.12s, border-color 0.12s;
+}
+
+.btn:hover {
+  opacity: 0.82;
+}
+
+.btn:active {
+  opacity: 0.65;
+}
+
+.btn--ghost {
+  border-color: var(--border);
+  background: transparent;
+}
+
+.btn--danger {
+  border-color: rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.btn--sm {
+  padding: 6px 12px;
+  font-size: 13px;
+}
+
+/* ── Pill / badge ───────────────────────────────────────── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(127, 127, 127, 0.06);
+  font-size: 13px;
+  color: var(--text-h);
+  white-space: nowrap;
+}
+
+.pill--warn {
+  border-color: rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.1);
+  color: #b45309;
+}
+
+.pill--ok {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(34, 197, 94, 0.1);
+  color: #15803d;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pill--warn { color: #fbbf24; }
+  .pill--ok   { color: #4ade80; }
+}
+
+.muted {
+  color: var(--text);
+  font-weight: 400;
+}
+
+/* ── Hint ───────────────────────────────────────────────── */
+.hint {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.6;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(127, 127, 127, 0.04);
+}
+
+/* ── Status row ─────────────────────────────────────────── */
+.status {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Speaker preview ────────────────────────────────────── */
+.preview {
+  margin-top: 20px;
+}
+
+.preview__title {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.preview__box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  min-height: 110px;
+  color: var(--text-h);
+  line-height: 1.65;
+  font-size: 15px;
+  background: rgba(127, 127, 127, 0.03);
+}
+
+.interim {
+  opacity: 0.45;
+}
+
+/* ── Divider between sections ───────────────────────────── */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* ── Teleprompter (viewer) ──────────────────────────────── */
+.teleprompter {
+  flex: 1;
+  padding: 36px 32px 80px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.teleprompter__text {
+  max-width: 940px;
+  margin: 0 auto;
+  font-size: clamp(26px, 4vw, 64px);
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+  color: var(--text-h);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.teleprompter__actions {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+.teleprompter__clear {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  transition: opacity 0.15s, box-shadow 0.15s;
+  opacity: 0.7;
+}
+
+.teleprompter__clear:hover {
+  opacity: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+}
+
+.teleprompter__clear:active {
+  opacity: 0.6;
+}

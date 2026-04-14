@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Client (Vite)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev:host"],
+      "cwd": "client",
+      "port": 5173,
+      "https": true
+    },
+    {
+      "name": "Server (ts-node-dev)",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "server",
+      "port": 3001
+    }
+  ]
+}
