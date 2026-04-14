@@ -4,6 +4,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_ACTIONS ? '/ScribeShare/' : '/',
   plugins: [react(), basicSsl()],
   server: {
     host: true,
