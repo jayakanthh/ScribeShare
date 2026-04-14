@@ -1,0 +1,7 @@
+name: scribeshare-server
+type: web
+runtime: nodejs
+build_command: npm install && npm run build
+run_command: npm start
+health_checks:
+  - path: /health
