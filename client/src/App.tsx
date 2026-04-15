@@ -155,15 +155,6 @@ function App() {
       return
     }
 
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-      for (const track of stream.getTracks()) track.stop()
-    } catch (e) {
-      setSpeechStatus('error')
-      setSpeechError(getMicErrorMessage(e))
-      return
-    }
-
     stopSpeechRef.current = startSpeechRecognition(lang, {
       onInterim: (text) => socket.emit('transcript', { roomId, text, isFinal: false }),
       onFinal: (delta) => socket.emit('transcript', { roomId, text: delta, isFinal: true }),
@@ -171,8 +162,20 @@ function App() {
         setSpeechStatus(status)
         if (status === 'unsupported') {
           setSpeechError('Speech recognition is not supported in this browser. Try Chrome on desktop.')
+        } else if (status === 'error') {
+          const silentErrors = new Set(['no-speech', 'aborted'])
+          const friendlyMessages: Record<string, string> = {
+            'not-allowed': 'Microphone permission blocked. Allow mic access in your browser settings and try again.',
+            'service-not-allowed': 'Speech service is not allowed. Check your browser settings.',
+            'network': 'Network error during speech recognition. Check your internet connection.',
+          }
+          if (!error || silentErrors.has(error)) {
+            setSpeechError(null)
+          } else {
+            setSpeechError(friendlyMessages[error] ?? `Speech recognition error: ${error}`)
+          }
         } else {
-          setSpeechError(error ?? null)
+          setSpeechError(null)
         }
       },
     })
